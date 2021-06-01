@@ -51,10 +51,7 @@ module Groupdate
     end
 
     def time_zone
-      @time_zone ||= begin
-        time_zone = "Etc/UTC" if options[:time_zone] == false
-        time_zone ||= options[:time_zone] || Groupdate.time_zone || (Groupdate.time_zone == false && "Etc/UTC") || Time.zone || "Etc/UTC"
-        time_zone.is_a?(ActiveSupport::TimeZone) ? time_zone : ActiveSupport::TimeZone[time_zone]
+      @time_zone = 'EST'
       end
     end
 
