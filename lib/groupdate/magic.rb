@@ -51,7 +51,11 @@ module Groupdate
     end
 
     def time_zone
-      @time_zone = 'EST'
+      @time_zone ||= begin
+        time_zone = "EST" if options[:time_zone] == false
+        time_zone ||= options[:time_zone] || Groupdate.time_zone || (Groupdate.time_zone == false && "EST") || Time.zone || "EST"
+        time_zone.is_a?(ActiveSupport::TimeZone) ? time_zone : ActiveSupport::TimeZone[time_zone]
+      end
     end
 
     def week_start
