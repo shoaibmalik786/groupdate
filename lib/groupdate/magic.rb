@@ -52,7 +52,6 @@ module Groupdate
 
     def time_zone
       @time_zone = 'EST'
-      end
     end
 
     def week_start
